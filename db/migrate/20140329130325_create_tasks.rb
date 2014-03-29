@@ -6,9 +6,8 @@ class CreateTasks < ActiveRecord::Migration
       t.text :description
       t.datetime :date_closed
       t.integer :priority
-      t.string :type
-      t.belongs_to :project
-      t.belongs_to :user
+      t.integer :project_id
+      t.integer :user_id
       t.integer :label
       
       t.timestamps

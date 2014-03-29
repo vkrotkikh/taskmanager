@@ -1,10 +1,8 @@
 class CreateProjectsUsers < ActiveRecord::Migration
   def change
     create_table :projects_users do |t|
-      t.belongs_to :project
-      t.belongs_to :user
-
-      t.timestamps
+      t.integer :project_id
+      t.integer :user_id
     end
   end
 end
