@@ -1,0 +1,17 @@
+local: &local
+  adapter: postgresql
+  username: admin
+  password: admin
+  host: localhost
+
+development:
+  <<: *local
+  database: taskman_dev
+
+test:
+  <<: *local
+  database: taskman_test
+
+production:
+  <<: *local
+  database: taskman_production
