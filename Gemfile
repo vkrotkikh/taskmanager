@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker', '~> 1.2.0'
-
 end
 
 group :test  do
