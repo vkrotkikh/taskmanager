@@ -24,6 +24,13 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
+gem 'devise'
+gem 'cancan'
+gem 'enumerize'
+gem 'state_machine'
+gem 'simple_form'
+gem 'paperclip'
+
 gem 'rake'
 
 
