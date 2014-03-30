@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create(name: params[:name], user_id: current_user.id)
+    @project = Project.create(name: params[:project][:name], user_id: current_user.id)
     if @project.errors.empty?
        redirect_to project_path(@project)
     else
@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @project.update_attributes(name: params[:name])
+    @project.update_attributes(name: params[:project][:name])
     if @project.errors.empty?
        redirect_to project_path(@project)
     else
@@ -40,7 +40,9 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-
+    @project = Project.find(params[:id])
+    @project.destroy
+    redirect_to projects_path
   end
 
 end

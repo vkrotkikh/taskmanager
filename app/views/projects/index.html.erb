@@ -1,9 +1,35 @@
-<% @projects.each do |i| %>
-    <p><%= link_to i.name, project_path(i) %></p>
-    <p><%= link_to i.id, project_path(i) %></p>
-    <p><%= link_to i.user_id, project_path(i) %></p></br>
+<h1>My Projects</h1>
 
+<% if @projects.empty? %>
+    <b>You have no projects yet</b>
 <% end %>
+
+<table>
+  <tr>
+    <th>Project Id</th>
+    <th>Project Name</th>
+    <th>Link to Edit</th>
+    <th>Link to Delete</th>
+  </tr>
+
+  <% @projects.each do |i| %>
+
+      <tr>
+        <td><%= i.id %></td>
+        <td><%= link_to i.name, project_path(i) %></td>
+        <td><%= link_to 'Edit', edit_project_path(i) %></td>
+
+        <% if i.user_id == current_user.id %>
+        <td><%= link_to 'Delete', i, method: :delete, data: { confirm: 'Are you sure to delete?'} %></td>
+        <% end %>
+      </tr>
+
+
+  <% end %>
+
+</table>
+
+
 
 <p>
 <%= link_to 'Click here to create new project', new_project_path %>
