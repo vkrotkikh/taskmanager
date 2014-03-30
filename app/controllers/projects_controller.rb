@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.all
-    #render text: @projects.map { |i| "Project with name #{i.name} and id #{i.id}"   }.join("<br/>")
+    @projects = Project.where(user_id: current_user.id)
+    #render text: @projects.map { |i| "Project with name #{i.name} and id #{i.id} and user_id #{i.user_id}"   }.join("<br/>")
   end
 
   def show
@@ -12,7 +12,6 @@ class ProjectsController < ApplicationController
   end
 
   def new
-
     Project.new
   end
 
@@ -21,7 +20,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create(name: params[:name], id: params[:id])
+    @project = Project.create(name: params[:name], user_id: current_user.id)
     if @project.errors.empty?
        redirect_to project_path(@project)
     else
