@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create(name: params[:project][:name], user_id: current_user.id)
+    @project = Project.create(project_params)
     if @project.errors.empty?
        redirect_to project_path(@project)
     else
@@ -30,8 +30,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @project.update_attributes(name: params[:project][:name])
-    if @project.errors.empty?
+    if @project.update_attributes(project_params.merge({user_id: current_user.id}))
        redirect_to project_path(@project)
     else
       render 'edit'
@@ -43,6 +42,13 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.destroy
     redirect_to projects_path
+  end
+
+
+  private
+
+  def project_params
+    params.require(:project).permit(:name)
   end
 
 end
