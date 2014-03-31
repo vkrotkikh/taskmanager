@@ -1,6 +1,10 @@
-<h1><%= @project.name %></h1>
+<h1>Project page</h1>
+
+<h3><%= @project.name %></h3>
 
 <ul>
   <li><%= @project.id %></li>
   <li><%= @project.user_id %></li>
 </ul>
+
+<%= link_to 'Go to My Projects', projects_path %>

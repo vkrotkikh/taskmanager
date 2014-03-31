@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.all
-    #render text: @projects.map { |i| "Project with name #{i.name} and id #{i.id}"   }.join("<br/>")
+    @projects = Project.where(user_id: current_user.id)
+    #render text: @projects.map { |i| "Project with name #{i.name} and id #{i.id} and user_id #{i.user_id}"   }.join("<br/>")
   end
 
   def show
@@ -12,7 +12,6 @@ class ProjectsController < ApplicationController
   end
 
   def new
-
     Project.new
   end
 
@@ -21,7 +20,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create(name: params[:name], id: params[:id])
+    @project = Project.create(project_params)
     if @project.errors.empty?
        redirect_to project_path(@project)
     else
@@ -31,8 +30,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @project.update_attributes(name: params[:name])
-    if @project.errors.empty?
+    if @project.update(project_params.merge({user_id: current_user.id}))
        redirect_to project_path(@project)
     else
       render 'edit'
@@ -41,7 +39,16 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    redirect_to projects_path
+  end
 
+
+  private
+
+  def project_params
+    params.require(:project).permit(:name)
   end
 
 end
