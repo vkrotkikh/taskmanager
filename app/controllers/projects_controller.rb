@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    if @project.update_attributes(project_params.merge({user_id: current_user.id}))
+    if @project.update(project_params.merge({user_id: current_user.id}))
        redirect_to project_path(@project)
     else
       render 'edit'
