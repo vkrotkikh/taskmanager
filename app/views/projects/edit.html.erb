@@ -1,0 +1,10 @@
+<h1>Edit project</h1>
+
+
+<%= simple_form_for @project do |f| %>
+
+    <p>Current Name: "<strong><%= @project.name %> </strong>"<br></p>
+    <%= f.input :name %>
+    <%= f.button :submit  %>
+
+<% end %>

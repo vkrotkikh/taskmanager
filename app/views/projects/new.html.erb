@@ -1,0 +1,15 @@
+<h1>Create new project</h1>
+
+<!--<form action="/projects" method="post">-->
+  <!--<input type="text" name="title"/>-->
+  <!--<input type="submit"/>-->
+
+<!--</form>-->
+
+
+<%= simple_form_for Project.new do |f| %>
+
+    <%= f.input :name %>
+    <%= f.button :submit  %>
+
+<% end %>

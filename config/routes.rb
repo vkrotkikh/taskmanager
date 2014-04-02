@@ -1,9 +1,17 @@
-Taskmanager::Application.routes.draw do
+ Taskmanager::Application.routes.draw do
+
+   get "home/index"
+
+   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root to: 'home#index'
+
+  resources :projects
+
+  resources :users
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -53,4 +61,5 @@ Taskmanager::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  # get ':controller(/:action(/:id))(.:format)'
 end

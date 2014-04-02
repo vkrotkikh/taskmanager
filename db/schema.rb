@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329131949) do
+ActiveRecord::Schema.define(version: 20140329164124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20140329131949) do
     t.datetime "updated_at"
   end
 
+  create_table "attachments_tasks", force: true do |t|
+    t.integer "attachment_id"
+    t.integer "task_id"
+  end
+
   create_table "projects", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -30,18 +35,9 @@ ActiveRecord::Schema.define(version: 20140329131949) do
     t.datetime "updated_at"
   end
 
-  create_table "projects_tasks", force: true do |t|
-    t.integer  "project_id"
-    t.integer  "task_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "projects_users", force: true do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "project_id"
+    t.integer "user_id"
   end
 
   create_table "tasks", force: true do |t|
@@ -50,7 +46,6 @@ ActiveRecord::Schema.define(version: 20140329131949) do
     t.text     "description"
     t.datetime "date_closed"
     t.integer  "priority"
-    t.string   "type"
     t.integer  "project_id"
     t.integer  "user_id"
     t.integer  "label"
@@ -62,16 +57,21 @@ ActiveRecord::Schema.define(version: 20140329131949) do
     t.string   "name"
     t.integer  "role"
     t.string   "password"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
-  create_table "users_tasks", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "task_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

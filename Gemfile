@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker', '~> 1.2.0'
-
 end
 
 group :test  do
@@ -24,6 +23,13 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+
+gem 'devise'
+gem 'cancan'
+gem 'enumerize'
+gem 'state_machine'
+gem 'simple_form'
+gem 'paperclip'
 
 gem 'rake'
 
