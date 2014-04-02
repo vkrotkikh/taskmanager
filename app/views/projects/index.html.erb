@@ -11,7 +11,7 @@
     <th>Link to Edit</th>
     <th>Link to Delete</th>
   </tr>
-
+  
   <% @projects.each do |i| %>
 
       <tr>
@@ -20,7 +20,8 @@
         <td><%= link_to 'Edit', edit_project_path(i) %></td>
 
         <% if i.user_id == current_user.id %>
-        <td><%= link_to 'Delete', i, method: :delete, data: { confirm: 'Are you sure to delete?'} %></td>
+        <td><%= link_to 'Delete', i, method: :delete, data: { confirm: 'Are you sure to delete?'} %>
+        </td>
         <% end %>
       </tr>
 
