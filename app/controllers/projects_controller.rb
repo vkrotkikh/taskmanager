@@ -11,20 +11,16 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def new
-    Project.new
-  end
-
   def edit
     @project = Project.find(params[:id])
   end
 
   def create
     @project = Project.create(project_params)
-    if @project.errors.empty?
+    if @project.update(project_params.merge({user_id: current_user.id}))
        redirect_to project_path(@project)
     else
-      render 'new'
+      render 'edit'
     end
   end
 
