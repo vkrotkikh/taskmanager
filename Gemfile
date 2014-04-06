@@ -25,7 +25,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
-gem 'cancan'
+gem 'cancancan'
 gem 'enumerize'
 gem 'state_machine'
 gem 'simple_form'

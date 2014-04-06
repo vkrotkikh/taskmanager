@@ -7,4 +7,30 @@
   <li><%= @project.user_id %></li>
 </ul>
 
+
+
+<table>  
+  <% @tasks.each do |i| %>
+
+      <tr>
+        <td><%= i.id %></td>
+        <td><%= i.name %></td>
+		<td><%= i.description %></td>
+      </tr>
+
+
+  <% end %>
+
+</table>
+
+<div>
+<%= link_to 'Add User', add_user_to_project_path %>
+</div>
+
+<div>
 <%= link_to 'Go to My Projects', projects_path %>
+</div>
+
+<div>
+<%= link_to 'Add New task', new_task_path %>
+</div>

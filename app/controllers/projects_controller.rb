@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
     unless @project = Project.where(id: params[:id]).first
       render text: 'Page not found', status: 404
     end
+    @tasks = current_user.tasks
   end
 
   def edit
@@ -24,6 +25,7 @@ class ProjectsController < ApplicationController
     @project = Project.create(project_params)
     if @project.update(project_params.merge({user_id: current_user.id}))
        current_user.projects << @project
+
        redirect_to project_path(@project)
     else
       render 'edit'
@@ -46,11 +48,18 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def add_user_to
+    @project = Project.find(params[:id])
+  end
 
   private
 
-  def project_params
-    params.require(:project).permit(:name)
-  end
+def project_params
+  params.require(:project).permit(:name)
+end
+
+def find_project
+    @project = Project.find(params[:id])
+end
 
 end

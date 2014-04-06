@@ -1,0 +1,14 @@
+<h1>Add user to project</h1>
+
+
+
+<%= simple_form_for @project.users.first do |f| %>
+
+    <p>Fill forms below to add User to current Project:</p>
+    <%= f.input :name, label: "User name:" %>
+    <%= f.button :submit, value: "Add User"  %>
+
+<% end %>
+
+
+<%= link_to 'Go to My Projects', projects_path %>
