@@ -11,8 +11,8 @@ describe ProjectsController do
   end
 
   context 'when user logged in' do
-    let(:user) { FactoryGirl.create(:user)}
-    subject { FactoryGirl.create(:project)}
+    let(:user) { FactoryGirl.create(:user) }
+    subject { FactoryGirl.create(:project) }
 
     before do
       sign_in user
@@ -33,7 +33,7 @@ describe ProjectsController do
     describe "GET show" do
       it 'assigns the requested project to subject' do
         get :show, id: subject
-        expect(assings(:project)).to eq(subject)
+        expect(assigns(:project)).to eq(subject)
       end
 
       it 'renders the :show view' do
@@ -57,20 +57,20 @@ describe ProjectsController do
     describe "POST #create" do
       context "with valid attributes" do
         it "creates new object" do
-          expect{
+          expect {
             post :create, project: FactoryGirl.attributes_for(:project)
           }.to change(Project, :count).by(1)
         end
 
         it "rendirects to index path" do
           post :create, project: FactoryGirl.attributes_for(:project)
-          expect(response).to redirect_to project_path(:project)
+          expect(response).to redirect_to project_path(subject)
         end
       end
 
       context "with not valid attributes" do
         it "not save object to db" do
-          expect{
+          expect {
             post :create, project: FactoryGirl.attributes_for(:invalid_project)
           }.to_not change(Project, :count)
         end
@@ -85,22 +85,22 @@ describe ProjectsController do
     describe "PATCH #update" do
       context "with valid attributes" do
         it "updates object" do
-          expect{
-            patch :update, id: subject, project: { name: 'new_project' }
-          }.to change{ subject.reload.name }.to('new_project')
+          expect {
+            patch :update, id: subject, project: {name: 'new_project'}
+          }.to change { subject.reload.name }.to('new_project')
         end
 
         it "redirects to index path" do
-          patch :update, id: subject, project: { name: 'new_project' }
+          patch :update, id: subject, project: {name: 'new_project'}
           expect(response).to redirect_to projects_path
         end
       end
 
       context "with not valid attributes" do
         it "not save object to db" do
-          expect{
+          expect {
             patch :update, id: subject, project: FactoryGirl.attributes_for(:invalid_project)
-          }.to_not change{ subject.name }
+          }.to_not change { subject.name }
         end
 
         it "render edit view" do
