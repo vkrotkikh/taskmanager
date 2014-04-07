@@ -3,10 +3,9 @@ class Ability
 
   def initialize(user)
   	
-    can [:read, :create], Project
-    can [:update, :destroy], Project do
-
-    end
+    can [:create], Project
+    can [:read ], Project, Project.joins(:users).where(users: {id: user.id})
+    can [:update, :destroy], Project, user_id: user.id
   end
 
 end
