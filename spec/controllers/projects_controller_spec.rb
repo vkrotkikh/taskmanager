@@ -64,7 +64,7 @@ describe ProjectsController do
 
         it "rendirects to index path" do
           post :create, project: FactoryGirl.attributes_for(:project)
-          expect(response).to redirect_to projects_path
+          expect(response).to redirect_to project_path(:project)
         end
       end
 
