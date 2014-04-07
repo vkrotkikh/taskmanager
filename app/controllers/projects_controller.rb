@@ -3,7 +3,6 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = current_user.projects.sort_by_name
-    #render text: @projects.map { |i| "Project with name #{i.name} and id #{i.id} and user_id #{i.user_id}"   }.join("<br/>")
   end
 
   def new
