@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
 
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = current_user.projects.sort_by_name
@@ -10,10 +11,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    unless @project = Project.where(id: params[:id]).first
-      render text: 'Page not found', status: 404
+    if @project.save
+      @tasks = current_user.tasks
     end
-    @tasks = current_user.tasks
   end
 
   def edit

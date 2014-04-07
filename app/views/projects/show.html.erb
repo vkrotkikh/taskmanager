@@ -10,12 +10,12 @@
 
 
 <table>  
-  <% @tasks.each do |i| %>
+  <% @tasks.each do |task| %>
 
       <tr>
-        <td><%= i.id %></td>
-        <td><%= i.name %></td>
-		<td><%= i.description %></td>
+        <td><%= task.id %></td>
+        <td><%= task.name %></td>
+		<td><%= task.description %></td>
       </tr>
 
 
