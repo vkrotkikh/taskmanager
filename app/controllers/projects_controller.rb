@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
 
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = current_user.projects.sort_by_name

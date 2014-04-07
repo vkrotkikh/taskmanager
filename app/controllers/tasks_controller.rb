@@ -1,13 +1,18 @@
 class TasksController < ApplicationController
 
+
+  before_action :find_task, only: [:show, :edit, :update, :destroy]
+
   def new
     @task = Task.new
   end
 
   def show
+
   end
 
   def edit
+
   end
 
   def create
@@ -29,6 +34,10 @@ private
 
 	def task_params
 	  params.require(:task).permit(:name, :description)
-	end
+  end
+
+  def find_task
+    @task = Task.find(params[:id])
+  end
 
 end

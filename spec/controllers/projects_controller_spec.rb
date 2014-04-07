@@ -82,6 +82,7 @@ describe ProjectsController do
       end
     end
 
+
     describe "PATCH #update" do
       context "with valid attributes" do
         it "updates object" do
