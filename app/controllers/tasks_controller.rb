@@ -5,19 +5,17 @@ class TasksController < ApplicationController
   end
 
   def show
-  	@task = Project.find(params[:id])
   end
 
   def edit
-  	@task = Project.find(params[:id])
   end
 
   def create
     @task = Task.create(task_params)
-    if @task.update(task_params.merge({user_id: current_user.id}))
+    if @task.update(task_params.merge({ user_id: current_user.id }))
        redirect_to root_path
     else
-      render 'edit'
+      render 'new'
     end
   end
 
@@ -26,6 +24,8 @@ class TasksController < ApplicationController
 
   def destroy
   end
+
+private
 
 	def task_params
 	  params.require(:task).permit(:name, :description)

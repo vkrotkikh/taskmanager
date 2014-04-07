@@ -10,10 +10,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    unless @project = Project.where(id: params[:id]).first
-      render text: 'Page not found', status: 404
-    end
+    @project = Project.find_by(id: params[:id])
     @tasks = current_user.tasks
+    @projectOwnerEmail = User.find_by(id: @project.user_id).email
   end
 
   def edit

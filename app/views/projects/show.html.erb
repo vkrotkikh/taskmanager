@@ -3,19 +3,18 @@
 <h3><%= @project.name %></h3>
 
 <ul>
-  <li><%= @project.id %></li>
-  <li><%= @project.user_id %></li>
+  <li><%= @projectOwnerEmail %></li>
 </ul>
 
 
 
 <table>  
-  <% @tasks.each do |i| %>
+  <% @tasks.each do |item| %>
 
       <tr>
-        <td><%= i.id %></td>
-        <td><%= i.name %></td>
-		<td><%= i.description %></td>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+		<td><%= item.description %></td>
       </tr>
 
 

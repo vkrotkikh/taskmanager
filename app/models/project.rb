@@ -5,5 +5,5 @@ class Project < ActiveRecord::Base
   validates :name, presence: true, length: { in: 3..50}, uniqueness: { scope: :user_id}
 
   scope :sort_by_name, -> {order name: :asc}
-
+  
 end
