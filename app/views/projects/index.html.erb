@@ -16,13 +16,18 @@
 
       <tr>
         <td><%= i.id %></td>
-        <td><%= link_to i.name, project_path(i) %></td>
-        <td><%= link_to 'Edit', edit_project_path(i) %></td>
-
-        <% if i.user_id == current_user.id %>
-        <td><%= link_to 'Delete', i, method: :delete, data: { confirm: 'Are you sure to delete?'} %>
+        <td>
+          <%= link_to i.name, project_path(i) %></td>
+        <td>
+          <% if can? :update, i %>
+          <%= link_to 'Edit', edit_project_path(i) %>
+          <% end %></td>
+        <td>
+          <% if can? :destroy, i %>
+          <%= link_to 'Delete', i, method: :delete, data: { confirm: 'Are you sure to delete?'} %>
+          <% end %>
         </td>
-        <% end %>
+
       </tr>
 
 
@@ -32,7 +37,7 @@
 
 
 
-<p>
-<%= link_to 'Click here to create new project', new_project_path %>
-</p>
+<div>
+<%= link_to 'Create new project', new_project_path %>
+</div>
 

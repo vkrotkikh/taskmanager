@@ -1,6 +1,9 @@
 <h1>Create new project</h1>
 
-<%= simple_form_for Project.new do |f| %>
+<%= simple_form_for @project do |f| %>
     <%= f.input :name %>
     <%= f.button :submit  %>
 <% end %>
+<div>
+<%= link_to 'Go to My Projects', projects_path %>
+</div>

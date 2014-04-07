@@ -1,0 +1,9 @@
+<h1>Create new task</h1>
+
+<%= simple_form_for @task do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description, as: :text %>
+    <%= f.button :submit  %>
+<% end %>
+
+<%= link_to 'Back to Project', projects_path %>
