@@ -1,12 +1,15 @@
-<h1>Edit project</h1>
+<div class="popup-container">
 
+<h2>Edit project</h2>
 
 <%= simple_form_for @project do |f| %>
-
     <p>Current Name: "<strong><%= @project.name %> </strong>"<br></p>
     <%= f.input :name %>
-    <%= f.button :submit  %>
-
+    <div class="clearfix">
+    	<%= f.button :submit, class:"pull-right btn-info"  %>
+    </div>
 <% end %>
-
-<%= link_to 'Go to My Projects', projects_path %>
+<div class="links-row">
+	<%= link_to '← Back to Projects', projects_path %>
+</div>
+</div>

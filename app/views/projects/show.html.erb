@@ -1,12 +1,28 @@
-<h1>Project page</h1>
-
-<h3><%= @project.name %></h3>
-
-<ul>
-  <li><%= @projectOwnerEmail %></li>
+<div class="project-container container">
+<ul class="main-menu">
+  <li>
+  	<%= link_to '← Back to Projects', projects_path %>
+  </li>
+  <li>|</li>
+  <li><%= link_to 'Share Project', add_user_to_project_path %></li>
+  <li>
+    <% if user_signed_in? %>
+    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, class:"btn pull-right" %>
+    <% end %>
+  </li>
+</ul>
+<h2><%= @project.name %></h2>
+<ul class="proj-info-list">
+  <li><b>Creator's email:</b> <%= @projectOwnerEmail %></li>
 </ul>
 
-<table> 
+<table class="table tasks-table"> 
+<th class="col-id">Id</th>
+<th class="col-name">Name</th>
+<th class="col-desc">
+	<%= link_to 'Add New task', new_task_path, class:"pull-right" %>
+	Short Description
+ </th>
 	<% @tasks.each do |task| %>
 		<tr>
 			<td><%= task.id %></td>
@@ -17,13 +33,5 @@
 </table>
 
 <div>
-<%= link_to 'Add User', add_user_to_project_path %>
 </div>
-
-<div>
-<%= link_to 'Go to My Projects', projects_path %>
-</div>
-
-<div>
-<%= link_to 'Add New task', new_task_path %>
 </div>
