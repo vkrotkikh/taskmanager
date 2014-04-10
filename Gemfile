@@ -31,7 +31,7 @@ gem 'state_machine'
 gem 'simple_form'
 gem 'paperclip'
 
-
+gem 'heroku'
 gem 'rake'
 
 #twitter bootstrap
