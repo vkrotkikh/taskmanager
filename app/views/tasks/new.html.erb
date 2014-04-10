@@ -1,9 +1,15 @@
-<h1>Create new task</h1>
+<div class="popup-container">
+
+<h2>Create task</h2>
 
 <%= simple_form_for @task do |f| %>
     <%= f.input :name %>
     <%= f.input :description, as: :text %>
-    <%= f.button :submit  %>
+    <div class="clearfix">
+    <%= f.button :submit, class:"pull-right btn-info"  %>
+    </div>
 <% end %>
-
-<%= link_to 'Back to Project', projects_path %>
+<div class="links-row">
+	<%= link_to '← Back to Projects', projects_path %>
+</div>
+</div>
