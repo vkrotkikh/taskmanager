@@ -1,0 +1,12 @@
+<h1>Edit task</h1>
+
+
+<%= simple_form_for @task do |f| %>
+
+    <%= f.input :name, value: @task.name %>
+    <%= f.input :description, as: :text, value: @task.description  %>
+    <%= f.button :submit  %>
+
+<% end %>
+
+<%= link_to 'Go to My Projects', projects_path %>

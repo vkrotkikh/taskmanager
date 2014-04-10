@@ -1,0 +1,16 @@
+<div class="popup-container">
+
+<h2>Add user to project</h2>
+
+<%= simple_form_for @project do |f| %>
+
+    <p>Fill forms below to add User to current Project:</p>
+    <%= f.input :name, label: "User name:" %>
+    <div class="clearfix">
+    	<%= f.button :submit, value: "Add User", class:"pull-right btn-info"   %>
+	</div>
+<% end %>
+<div class="links-row">
+	<%= link_to '← Back to Projects', projects_path %>
+</div>
+</div>

@@ -1,6 +1,14 @@
-<h1>Create new project</h1>
+<div class="popup-container">
 
-<%= simple_form_for Project.new do |f| %>
+<h2>Create new project</h2>
+
+<%= simple_form_for @project do |f| %>
     <%= f.input :name %>
-    <%= f.button :submit  %>
+    <div class="clearfix">
+    	<%= f.button :submit, class:"pull-right btn-info"  %>
+    </div>
 <% end %>
+<div class="links-row">
+	<%= link_to '← Back to Projects', projects_path %>
+</div>
+</div>

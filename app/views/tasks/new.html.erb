@@ -1,12 +1,12 @@
 <div class="popup-container">
 
-<h2>Edit project</h2>
+<h2>Create task</h2>
 
-<%= simple_form_for @project do |f| %>
-    <p>Current Name: "<strong><%= @project.name %> </strong>"<br></p>
+<%= simple_form_for @task do |f| %>
     <%= f.input :name %>
+    <%= f.input :description, as: :text %>
     <div class="clearfix">
-    	<%= f.button :submit, class:"pull-right btn-info"  %>
+    <%= f.button :submit, class:"pull-right btn-info"  %>
     </div>
 <% end %>
 <div class="links-row">

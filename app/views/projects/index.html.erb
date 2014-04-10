@@ -1,38 +1,52 @@
-<h1>My Projects</h1>
+<div class="project-container container">
+<ul class="main-menu">
+  <li>
+    <% if user_signed_in? %>
+    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, class:"btn pull-right" %>
+    <% end %>
+  </li>
+</ul>
+
+<h2>My Projects</h2>
 
 <% if @projects.empty? %>
     <b>You have no projects yet</b>
 <% end %>
 
-<table>
+<table class="table project-table">
   <tr>
-    <th>Project Id</th>
-    <th>Project Name</th>
-    <th>Link to Edit</th>
-    <th>Link to Delete</th>
+    <th>Id</th>
+    <th>Name</th>
+    <th colspan="2">
+      <div class="pull-right">
+      <%= link_to 'Create new project', new_project_path %>
+      </div> 
+    </th>
   </tr>
   
   <% @projects.each do |i| %>
 
       <tr>
-        <td><%= i.id %></td>
-        <td><%= link_to i.name, project_path(i) %></td>
-        <td><%= link_to 'Edit', edit_project_path(i) %></td>
-
-        <% if i.user_id == current_user.id %>
-        <td><%= link_to 'Delete', i, method: :delete, data: { confirm: 'Are you sure to delete?'} %>
+        <td class="col-id"><%= i.id %></td>
+        <td class="col-name">
+          <%= link_to i.name, project_path(i) %></td>
+        <td class="col-edit">
+          <% if can? :update, i %>
+          <%= link_to 'Edit', edit_project_path(i) %>
+          <% end %></td>
+        <td class="col-delete">
+          <% if can? :destroy, i %>
+          <%= link_to 'Delete', i, method: :delete, data: { confirm: 'Are you sure to delete?'} %>
+          <% end %>
         </td>
-        <% end %>
+
       </tr>
 
 
   <% end %>
 
 </table>
+  
+</div>
 
-
-
-<p>
-<%= link_to 'Click here to create new project', new_project_path %>
-</p>
 
