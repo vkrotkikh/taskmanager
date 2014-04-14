@@ -34,14 +34,11 @@
           <td class="col-id"><%= p.id %></td>
           <td class="col-name">
             <%= link_to p.name, project_path(p) %></td>
-          <td class="col-edit">
-            <% if can? :update, p %>
+          <td class="col-edit"> 
             <%= link_to 'Edit', edit_project_path(p) %>
-            <% end %></td>
-          <td class="col-delete">
-            <% if can? :destroy, p %>
+          </td>
+          <td class="col-delete"> 
             <%= link_to 'Delete', p, method: :delete %>
-            <% end %>
           </td>
         </tr>
     <% end %>

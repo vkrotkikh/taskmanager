@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
   before_action :find_project, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @projects = current_user.projects.sort_by_name
   end
@@ -13,7 +14,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find_by(id: params[:id])
     @tasks = @project.tasks
-    @projectOwnerEmail = User.find_by(id: @project.user_id).email
+    @projectOwnerEmail = User.find_by(id: @project.owner_id).email
   end
 
   def edit
@@ -21,7 +22,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.create(project_params)
-    if @project.update(project_params.merge({user_id: current_user.id}))
+    if @project.update(project_params.merge({owner_id: current_user.id}))
        current_user.projects << @project
        redirect_to project_path(@project)
     else
@@ -30,7 +31,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.update(project_params.merge({user_id: current_user.id}))
+    if @project.update(project_params.merge({owner_id: current_user.id}))
        redirect_to project_path(@project)
     else
       render 'edit'
@@ -43,21 +44,21 @@ class ProjectsController < ApplicationController
   end
 
   def add_user_to
-    @user = Project.find(params[:id]).users.new(user_params)
+    @project = Project.find(params[:id])
+    @project.update(projects_users_params)
   end
 
 private
 
-def project_params
-  params.require(:project).permit(:name)
-end
+  def project_params
+    params.require(:project).permit(:name)
+  end
 
-def user_params
-  params.require(:user).permit(:email)
-end
+  def find_project
+      @project = Project.find(params[:id])
+  end
 
-def find_project
-    @project = Project.find(params[:id])
-end
+  def projects_users_params
+  end
 
 end
