@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find_by(id: params[:id])
-    @tasks = current_user.tasks
+    @tasks = @project.tasks
     @projectOwnerEmail = User.find_by(id: @project.user_id).email
   end
 
@@ -43,12 +43,17 @@ class ProjectsController < ApplicationController
   end
 
   def add_user_to
+    @user = Project.find(params[:id]).users.new(user_params)
   end
 
 private
 
 def project_params
   params.require(:project).permit(:name)
+end
+
+def user_params
+  params.require(:user).permit(:email)
 end
 
 def find_project

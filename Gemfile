@@ -30,6 +30,7 @@ gem 'enumerize'
 gem 'state_machine'
 gem 'simple_form'
 gem 'paperclip'
+gem "nested_form"
 
 gem 'heroku'
 gem 'rake'

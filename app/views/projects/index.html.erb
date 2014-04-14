@@ -10,43 +10,43 @@
 <h2>My Projects</h2>
 
 <% if @projects.empty? %>
-    <b>You have no projects yet</b>
+    <center>
+    <br>    
+    <h4>You don't have any projects yet</h4>
+    <br>
+    <%= link_to 'Create Project', new_project_path, class:"btn btn-info" %>
+    <br>
+    <br>    
+    </center>
+<% else %>
+  <table class="table project-table">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th colspan="2">
+        <div class="pull-right">
+        <%= link_to 'Create new project', new_project_path %>
+        </div> 
+      </th>
+    </tr>   
+    <% @projects.each do |p| %>
+        <tr>
+          <td class="col-id"><%= p.id %></td>
+          <td class="col-name">
+            <%= link_to p.name, project_path(p) %></td>
+          <td class="col-edit">
+            <% if can? :update, p %>
+            <%= link_to 'Edit', edit_project_path(p) %>
+            <% end %></td>
+          <td class="col-delete">
+            <% if can? :destroy, p %>
+            <%= link_to 'Delete', p, method: :delete %>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
 <% end %>
 
-<table class="table project-table">
-  <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th colspan="2">
-      <div class="pull-right">
-      <%= link_to 'Create new project', new_project_path %>
-      </div> 
-    </th>
-  </tr>
-  
-  <% @projects.each do |i| %>
-
-      <tr>
-        <td class="col-id"><%= i.id %></td>
-        <td class="col-name">
-          <%= link_to i.name, project_path(i) %></td>
-        <td class="col-edit">
-          <% if can? :update, i %>
-          <%= link_to 'Edit', edit_project_path(i) %>
-          <% end %></td>
-        <td class="col-delete">
-          <% if can? :destroy, i %>
-          <%= link_to 'Delete', i, method: :delete, data: { confirm: 'Are you sure to delete?'} %>
-          <% end %>
-        </td>
-
-      </tr>
-
-
-  <% end %>
-
-</table>
-  
 </div>
-
 

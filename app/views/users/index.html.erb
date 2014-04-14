@@ -1,6 +1,11 @@
-<% @users.each do |i| %>
-    <p><%= link_to i.name, user_path(i) %></p>
-    <p><%= link_to i.email, user_path(i) %></p>
-    <p><%= link_to i.id, user_path(i) %></p><br>
+<div class="popup-container congrat">
+	<h2>Congratulations!</h2>
+		<center>
+			<%= link_to 'Go to my Projects', projects_path, class:"btn btn-info" %>
+		</center>
+</div>
 
-<% end %>
+
+
+
+

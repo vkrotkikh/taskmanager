@@ -13,7 +13,7 @@
 */
 
 body {
-	background:url(skulls.png);
+	background:url(asset-path('skulls.png'));
 	color:#4f4f4f;
 }
 
@@ -31,6 +31,10 @@ body {
 	background: #fff;
 	border-radius: 4px;
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
+
+.congrat {
+	padding-bottom:30px;
 }
 
 .popup-container form {
@@ -161,4 +165,23 @@ width:30%;
 
 .tasks-table .col-desc {
 width:60%;
+}
+
+/*%%%%%%%%%%%%%% TASK PAGE %%%%%%%%%%%%%%*/
+
+.task-info {
+	padding-top:5px;
+}
+
+.task-buttons-row {
+	padding:0;
+	margin:0;
+}
+
+.task-buttons-row li:first-child {
+float:right;
+}
+
+.task-buttons-row li {
+display:inline-block;
 }

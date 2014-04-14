@@ -4,9 +4,10 @@ get "home/index"
 
 devise_for :users
 
-resources :users, :tasks
+resources :users
 
 resources :projects do
+  resources :tasks
   member do
     get 'add_user_to'
   end
