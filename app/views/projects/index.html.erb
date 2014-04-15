@@ -12,6 +12,7 @@
 <ul class="proj-info-list">
   <li><b>Hello, <%= current_user.name %>!</li>
 </ul>
+
   <table class="table project-table">
 <% if @own_projects.empty?  && !@user_has_assign_projects %>
   <tr>
@@ -63,7 +64,6 @@
       </tr>
   <% end %>
   <% else %>
-  <p>lorem ipsum</p>
 <% end %>  
 </table>
 </div>
