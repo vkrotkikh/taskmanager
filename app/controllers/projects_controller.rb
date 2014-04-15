@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
     if !current_user.projects_users.empty?
       @assign_projects = Project.find_all_by_id(current_user.projects_users.pluck(:project_id))
     end
+    @user_has_assign_projects = current_user.projects_users.pluck(:user_id).include?(current_user.id)
   end
 
   def new
