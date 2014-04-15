@@ -11,7 +11,7 @@
 <h2>My Projects</h2>
 
   <table class="table project-table">
-<% if @own_projects.empty? %>
+<% if @own_projects.empty?  && !@user_has_assign_projects %>
   <tr>
     <td colspan="4">
       <center>
@@ -48,7 +48,7 @@
         </tr>
     <% end %>
 <% end %>
-  <% if !current_user.projects_users.empty? %>
+  <% if @user_has_assign_projects %>
   <% @assign_projects.each do |p| next if current_user.id == p.owner_id %>
       <tr>
         <td class="col-id"><%= p.id %></td>
@@ -60,6 +60,8 @@
         </td>
       </tr>
   <% end %>
+  <% else %>
+  <p>lorem ipsum</p>
 <% end %>  
 </table>
 </div>
