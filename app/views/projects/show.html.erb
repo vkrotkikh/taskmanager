@@ -1,14 +1,14 @@
 <div class="project-container container">
 <ul class="main-menu">
   <li>
-  	<%= link_to '← Back to Projects', projects_path %>
+    <%= link_to '← Back to Projects', projects_path %>
   </li>
+  <% if !@project.projects_users.pluck(:user_id).include?(current_user.id) %>
   <li>|</li>
-  <li><%= link_to 'Share Project', add_user_to_project_path %></li>
+  <li><%= link_to 'Share Project', new_project_projects_user_path(@project) %></li>
+  <% end %>
   <li>
-    <% if user_signed_in? %>
     <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, class:"btn pull-right" %>
-    <% end %>
   </li>
 </ul>
 <h2><%= @project.name %></h2>
@@ -16,17 +16,17 @@
   <li><b>Creator's email:</b> <%= @projectOwnerEmail %></li>
 </ul>
 
-<table class="table tasks-table"> 
+<table class="table tasks-table">
 <th class="col-id">Id</th>
 <th class="col-name">Name</th>
-<th class="col-desc">
-	<%= link_to 'Add New task', new_task_path, class:"pull-right" %>
+<th colspan="2" class="col-desc">
+	<%= link_to 'Add New task', new_project_task_path(@project.id), class:"pull-right" %>
 	Short Description
  </th>
 	<% @tasks.each do |task| %>
 		<tr>
 			<td><%= task.id %></td>
-			<td><%= task.name %></td>
+			<td><%= link_to task.name, project_task_path(@project.id, task.id) %></td>
 			<td><%= task.description %></td>
 		</tr>
 	<% end %>

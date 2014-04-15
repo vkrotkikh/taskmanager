@@ -1,16 +1,13 @@
- Taskmanager::Application.routes.draw do
-root to: 'home#index'
-get "home/index"
+Taskmanager::Application.routes.draw do
+  root to: 'home#index'
+  get "home/index"
 
-devise_for :users
+  devise_for :users
 
-resources :users, :tasks
+  resources :users
 
-resources :projects do
-  member do
-    get 'add_user_to'
+  resources :projects do
+    resources :tasks
+    resources :projects_users, only: [:new, :create]
   end
-end
-
-
 end

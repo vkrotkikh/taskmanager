@@ -1,12 +1,15 @@
-<h1>Edit task</h1>
+<div class="popup-container">
 
+<h2>Edit task</h2>
 
-<%= simple_form_for @task do |f| %>
-
-    <%= f.input :name, value: @task.name %>
-    <%= f.input :description, as: :text, value: @task.description  %>
-    <%= f.button :submit  %>
-
+<%= simple_nested_form_for [@project, @task] do |f| %>
+	  <%= f.input :name, required: true %>
+	  <%= f.input :description, as: :text %>
+    <div class="clearfix">
+    <%= f.button :submit, class:"pull-right btn-info"  %>
+    </div>
 <% end %>
-
-<%= link_to 'Go to My Projects', projects_path %>
+<div class="links-row">
+	<%= link_to '← Back to Projects', projects_path %>
+</div>
+</div>
