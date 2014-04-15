@@ -4,6 +4,11 @@ class ProjectsUsersController < ApplicationController
 
   def new
     @projects_user = ProjectsUser.new
+    @projectList = User.all.map { |r|
+      next if current_user.name==r.name || 
+      r.projects_users.pluck(:project_id).include?(@project.id)
+      [r.name, r.id] }
+      @projectList = @projectList.compact
   end
 
   def create
@@ -14,6 +19,8 @@ class ProjectsUsersController < ApplicationController
       render :new
     end
   end
+
+
 
   private
 
