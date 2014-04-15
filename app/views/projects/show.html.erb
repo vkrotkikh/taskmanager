@@ -4,7 +4,7 @@
     <%= link_to '← Back to Projects', projects_path %>
   </li>
    <li>|</li>
-<li><%= link_to 'Share Project', add_user_to_project_path %></li> 
+<li><%= link_to 'Share Project', new_project_projects_user_path(@project) %></li>
   <li>
     <% if user_signed_in? %>
     <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, class:"btn pull-right" %>
@@ -16,7 +16,7 @@
   <li><b>Creator's email:</b> <%= @projectOwnerEmail %></li>
 </ul>
 
-<table class="table tasks-table"> 
+<table class="table tasks-table">
 <th class="col-id">Id</th>
 <th class="col-name">Name</th>
 <th colspan="2" class="col-desc">
