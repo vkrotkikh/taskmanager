@@ -1,13 +1,30 @@
-<h1>Project page</h1>
+<div class="project-container container">
+	<ul class="main-menu">
+		<li><%= link_to '← Back to Project', project_path(@project) %></li>
+	  <li>
+	    <% if user_signed_in? %>
+	    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, class:"btn pull-right" %>
+	    <% end %>
+	  </li>
+	</ul>
+	<h2><%= @project.name %></h2>
 
-<h3><%= @project.name %></h3>
+	<div class="task-container">
+		<div class="row-fluid">
+			<div class="span8">
 
-<ul>
-  <li><%= @project.id %></li>
-  <li><%= @project.user_id %></li>
-</ul>
-
-<%= link_to 'Add User', add_user_to_project_path %>
-
-
-<%= link_to 'Go to My Projects', projects_path %>
+				<h2><%= @task.name %></h2>
+				<p><%= @task.description %></p>
+			</div>
+			<div class="span4 task-info">
+				<h5>Task information</h5>
+				<p><span>Created at: </span><%= @task.created_at %></p>
+				<p><span>Updated at: </span><%= @task.updated_at %></p>
+				<ul class="task-buttons-row">
+					<li><%= link_to 'Delete task', p, method: :delete, class:"btn btn-danger" %></li>
+					<li><%= link_to 'Edit task', edit_project_task_path, class:"btn btn-success" %></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
