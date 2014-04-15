@@ -58,7 +58,7 @@ private
       @project = Project.find(params[:id])
   end
 
-  def projects_users_params
+  def project_params
   end
 
 end
