@@ -4,7 +4,11 @@ class ProjectsController < ApplicationController
 
 
   def index
-    @projects = current_user.projects.sort_by_name
+    @own_projects = current_user.own_projects.sort_by_name
+    
+    if !current_user.projects_users.empty?
+      @assign_projects = Project.find_all_by_id(current_user.projects_users.pluck(:project_id))
+    end
   end
 
   def new
@@ -23,7 +27,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.create(project_params)
     if @project.update(project_params.merge({owner_id: current_user.id}))
-       current_user.projects << @project
+       current_user.own_projects << @project
        redirect_to project_path(@project)
     else
       render 'new'

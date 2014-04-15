@@ -6,9 +6,7 @@
    <li>|</li>
 <li><%= link_to 'Share Project', new_project_projects_user_path(@project) %></li>
   <li>
-    <% if user_signed_in? %>
     <%= link_to 'Log Out', destroy_user_session_path, :method => :delete, class:"btn pull-right" %>
-    <% end %>
   </li>
 </ul>
 <h2><%= @project.name %></h2>

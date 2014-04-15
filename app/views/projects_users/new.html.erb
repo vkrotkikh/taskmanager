@@ -5,7 +5,7 @@
 <%= simple_form_for [@project, @projects_user] do |f| %>
 	<%= f.select :user_id, User.pluck(:name, :id) %>
 	<div class="clearfix">
-		<%= f.button :submit,  class:"pull-right btn-info" %>
+		<%= f.submit "Add User", class:"btn pull-right btn-info" %>
 	</div>
 <% end %>
 <div class="links-row">
