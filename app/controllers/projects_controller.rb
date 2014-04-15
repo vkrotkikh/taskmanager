@@ -45,7 +45,7 @@ class ProjectsController < ApplicationController
 
   def add_user_to
     @project = Project.find(params[:id])
-    @project.update(projects_users_params)
+    @project.projects_users.build
   end
 
 private

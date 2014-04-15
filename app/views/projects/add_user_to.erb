@@ -2,9 +2,9 @@
 
 <h2>Add user to project</h2>
 
-<%= simple_nested_form_for @project do |f| %> 
+<%= simple_nested_form_for @project do |f| %>
 <%= f.fields_for :projects_users do |project| %>
-	<%= project.select :user_id, collection: User.pluck(:name, :id) %> 
+	<%= project.select :user_id, User.pluck(:name, :id) %>
 <% end %>
 	<div class="clearfix">
 		<%= f.button :submit, class:"pull-right btn-info" %>
