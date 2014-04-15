@@ -48,29 +48,15 @@
         </tr>
     <% end %>
 <% end %>
-  <% if current_user.projects_users.empty? %>
-  <tr>
-    <td colspan="4">
-      <center>
-      <br>    
-      <h4>You don't have any assigned projects yet</h4>
-      <br>
-      <br>
-      <br>    
-      </center>
-    </td>
-  </tr>
-  <% else %>
+  <% if !current_user.projects_users.empty? %>
   <% @assign_projects.each do |p| next if current_user.id == p.owner_id %>
       <tr>
         <td class="col-id"><%= p.id %></td>
         <td class="col-name">
           <%= link_to p.name, project_path(p) %></td>
         <td class="col-edit"> 
-          <%= link_to 'Edit', edit_project_path(p) %>
         </td>
         <td class="col-delete"> 
-          <%= link_to 'Delete', p, method: :delete %>
         </td>
       </tr>
   <% end %>
