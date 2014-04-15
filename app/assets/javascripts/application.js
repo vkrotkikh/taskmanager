@@ -16,6 +16,3 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery_nested_form
-window.document.onload = function(e){
-	$('#projects_user_user_id').hide();
-}

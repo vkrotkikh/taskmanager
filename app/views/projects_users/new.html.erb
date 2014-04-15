@@ -3,11 +3,7 @@
 <h2>Add user to project</h2>
 
 <%= simple_form_for [@project, @projects_user] do |f| %>
-	<%= f.select :user_id, User.all.map { |r|
-      next if current_user.name==r.name || 
-      r.projects_users.pluck(:project_id).include?(@project.id)
-	    [r.name, r.id] }
-	 %>
+	<%= f.select :user_id, @projectList %>
 	<div class="clearfix">
 		<%= f.submit "Add User", class:"btn pull-right btn-info" %>
 	</div>
