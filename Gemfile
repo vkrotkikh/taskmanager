@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 gem 'cancancan'
+gem 'rolify'
 gem 'enumerize'
 gem 'state_machine'
 gem 'simple_form'

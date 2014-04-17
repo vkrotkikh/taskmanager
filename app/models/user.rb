@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
 
   has_many :projects_users
   has_many :own_projects, foreign_key: 'owner_id', class_name: Project

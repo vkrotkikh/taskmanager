@@ -1,12 +1,16 @@
 class TasksController < ApplicationController
 
   before_action :find_project, :find_task
+  
+  load_and_authorize_resource param_method: :task_params
 
   def new
     @task = Task.new
+    authorize! :read, @project
   end
 
   def show 
+    authorize! :read, @project
   end
 
   def create
