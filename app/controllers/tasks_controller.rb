@@ -9,8 +9,7 @@ class TasksController < ApplicationController
     authorize! :read, @project
   end
 
-  def show 
-    authorize! :read, @project
+  def show
   end
 
   def create

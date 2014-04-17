@@ -9,11 +9,11 @@ class Ability
       project.projects_users.pluck(:user_id).include?(user.id)
     end
     can [:read, :update, :destroy], Project, owner_id: user.id
-    can [:create, :read], Task
-    can [:update, :destroy], Task do |task|
+    can [:create], Task
+    can [:read, :update, :destroy], Task do |task|
     	#binding.pry   
       user.projects_users.pluck(:project_id).include?(task.project_id) ||
-      user.projects.pluck(:id).include?(task.project_id)
+      user.own_projects.pluck(:id).include?(task.project_id)
     end
 
   end
